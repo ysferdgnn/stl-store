@@ -27,7 +27,13 @@ const Home = () => {
         link: "abc.com",
         desc: "this is an stl fileeee",
         img: "https://shorturl.at/DT189"
-    }
+    },
+    {
+      name: "spiderman",
+      link: "abc.com",
+      desc: "this is an stl fileeee",
+      img: "https://shorturl.at/DT189"
+  }
   ]);
 
 
