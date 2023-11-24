@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   swcMinify: true,
   env: {
     API_KEY:'AIzaSyDsKrmDcrJcAD06GLPTy103O59xWw8ti88',
