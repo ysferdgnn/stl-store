@@ -21,7 +21,7 @@ const withAuth = (WrappedComponent) => {
       return () => unsubscribe();
      }, []);
      
-     return <WrappedComponent {...props} />;
+     return<WrappedComponent {...props} />;
 
   };
   WithAuth.displayName = `WithAuth(${getDisplayName(WrappedComponent)})`;

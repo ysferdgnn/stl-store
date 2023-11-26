@@ -2,26 +2,28 @@
 import Router from 'next/router'
 import {auth} from '../firebase';
 import {signInAnonymously, GoogleAuthProvider, signInWithPopup} from "firebase/auth";
+import UserContextProvider, { UserContext } from '../components/contexts/user-context';
+import { useContext } from 'react';
+
 
 const Login = () => {
+    const [userState, setUserState] = useContext(UserContext);
+
     const signInWithGoogle = () => {
         const provider = new GoogleAuthProvider();
         signInWithPopup(auth, provider).then((result) => {
+            let user =result.user;
+            setUserState({user:user,isLoggedIn:true});
+           
             Router.push("/home");
         }).catch((error) => {
             console.log(error);
         })
     };
 
-    const signAnonymously = () => {
-
-        signInAnonymously(auth).then((userCredential) => {
-            Router.push("/home");
-        });
-
-    };
 
     return (
+        <>
         <div className='w-3/6 m-auto flex'>
           
 
@@ -41,6 +43,7 @@ const Login = () => {
 
 
         </div>
+        </>
     );
 };
 

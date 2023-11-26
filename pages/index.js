@@ -2,12 +2,12 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import withAuth from '../components/withAuth'
+import UserContextProvider from '../components/contexts/user-context'
 
-function Home() {
+function Index() {
   return (
-    <div>
-    </div>
+      <div></div>
   )
 }
 
-export default withAuth(Home);
+export default Index;
