@@ -2,17 +2,21 @@ import React, { useContext, useState } from "react";
 import { UserContext } from "../contexts/user-context";
 import { collection, addDoc, Firestore } from "firebase/firestore"; 
 import { fireStore } from "../../firebase";
-function AddDialog({userId}) {
+import { StlListContext } from "../contexts/stl-list-context";
+import stlService from "../../service/firebase-stl-service";
+function AddDialog({afterInsertCallback}) {
 
     const [image,setImage] =useState();
     const [link,setLink] = useState();
     const [name,setName] = useState();
 
     const [userState,setUserState] = useContext(UserContext);
-
+    const [stls,setStls] = useContext(StlListContext);
 
 
    const onSubmit  = async (event) =>{
+
+    console.log('userState',userState);
         event.preventDefault();
         const dataToSave = {
             image: image,
@@ -21,10 +25,11 @@ function AddDialog({userId}) {
             userId: userState.user.uid
         }
 
-        const docRef = await addDoc(collection(fireStore, "stls"), dataToSave);
+        const data = stlService.addStl(dataToSave);
 
         console.log('dataToSave',dataToSave)
-        console.log("Document written with ID: ", docRef.id);
+        console.log("Document written with ID: ", data.id);
+        stlService.fetchStls(userState.user.uid,setStls,5000);
    }
   return (
     <dialog id="add_modal_dialog" className="modal">

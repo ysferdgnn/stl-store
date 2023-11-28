@@ -9,6 +9,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {useState} from 'react';
 import StlDashboard from '../../components/stl-dashboard/StlDashboard';
 import Navbar from '../../components/navbar/Navbar';
+import StlListContextProvider from '../../components/contexts/stl-list-context';
 
 const Home = () => {
     useEffect(() => {
@@ -28,12 +29,10 @@ const Home = () => {
 
 
     return (
-        <div>
+        <StlListContextProvider>
             <Navbar></Navbar>
             <StlDashboard></StlDashboard>
-
-
-        </div>
+        </StlListContextProvider>
 
     )
 }
